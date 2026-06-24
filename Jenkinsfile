@@ -23,7 +23,7 @@ pipleine {
     steps { // configure the performance reports plugin
       perfReport {
         // define the source data file
-        souceDataFile : 'logs/results.jtl',
+        souceDataFile: 'logs/results.jtl',
         // define the absolute error threshold
          errorFailedThreshold: 1.0, //build fails if error rate exceeds 1%
           errorUnstableThreshold: 0.0, //marks unstable if any error occurs
