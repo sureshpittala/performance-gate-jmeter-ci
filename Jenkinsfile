@@ -5,13 +5,12 @@ pipleine {
     stage('Checkout') {
     steps{checkout scm}
   }
-}
   //JMeter execution stage
   stage('JMeter') {
     steps {
       bat ''' // to execute multiple commands
-      if exists logs rmdir /s /q logs
-      if exists html rmdir /s /q html
+      if exist logs rmdir /s /q logs
+      if exist html rmdir /s /q html
       mkdir logs
       mkdir html
       mkdir html\\report
@@ -32,7 +31,7 @@ pipleine {
           //Double number (no quotes!) this indicates threshold values must be double numbers without quotes
           relativeFailedThresholdPositive: 1.3, // this failes build if response times degrade by 30%
           relativeUnstableThresholdPositive: 1.2, // this marks the build unstable if response times degrade by 20%
-          modeOfthreshold: true,
+          modeOfThreshold: true,
           configType: 'ART',
           }
     }
