@@ -1,9 +1,11 @@
-pipleine {
+pipeline {
   agent any
 //checkout stage
-  stages{
+  stages {
     stage('Checkout') {
-    steps{checkout scm}
+    steps{
+      checkout scm
+    }
   }
   //JMeter execution stage
   stage('JMeter') {
@@ -22,7 +24,7 @@ pipleine {
   // configure the performance gate
   stage('Performance Gates') {
     steps { // configure the performance reports plugin
-      perfReport {
+      perfReport(
         // define the source data file
         sourceDataFiles: 'logs/results.jtl',
         // define the absolute error threshold
@@ -32,8 +34,8 @@ pipleine {
           relativeFailedThresholdPositive: 1.3, // this failes build if response times degrade by 30%
           relativeUnstableThresholdPositive: 1.2, // this marks the build unstable if response times degrade by 20%
           modeOfThreshold: true,
-          configType: 'ART',
-          }
+          configType: 'ART'
+          )
     }
   }
   stage('Reports') {
